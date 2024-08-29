@@ -96,15 +96,15 @@ def generate():
         sentenceList = sentence.split(" ")
         if(level == "A1" and len(sentenceList != 5)):
             resultChain = rag_chain.invoke(stringConcat)
-            sentence = resultChain.split("\n)[0]
+            sentence = resultChain.split("\n")[0]
             sentenceList = sentence.split(" ")
         if(level == "A2" and len(sentenceList != 6)):
             resultChain = rag_chain.invoke(stringConcat)
-            sentence = resultChain.split("\n)[0]
+            sentence = resultChain.split("\n")[0]
             sentenceList = sentence.split(" ")
         if(level == "B1" and len(sentenceList != 7)):
             resultChain = rag_chain.invoke(stringConcat)
-            sentence = resultChain.split("\n)[0]
+            sentence = resultChain.split("\n")[0]
             sentenceList = sentence.split(" ")
         optionList = resultChain.split("\n")[1]
         # Return response
