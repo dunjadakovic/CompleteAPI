@@ -1,0 +1,13 @@
+langchain-openai
+langchain-community
+langchain-core
+langchain-text-splitters
+langchain-chroma
+python-dotenv 
+gunicorn
+flask
+Flask-Caching
+redis
+git+https://github.com/dunjadakovic/Bark2.git
+supabase
+pycryptodome
