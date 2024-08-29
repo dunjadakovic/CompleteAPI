@@ -26,6 +26,7 @@ app = Flask(__name__)
 
 app.config["SECRET_KEY"] = os.urandom(24)
 load_dotenv()
+secrets = [modal.Secret.from_name("complapisecrets")]
 
 openai_api_key = os.getenv("OPENAI_API_KEY")
 supabase_url = os.getenv("SUPABASE_URL")
