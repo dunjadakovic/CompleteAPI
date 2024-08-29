@@ -14,10 +14,6 @@ from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 from dotenv import load_dotenv
-from supabase import create_client, Client
-from io import BytesIO
-import modal
-from modal import Stub 
 
 app = Flask(__name__)
 
@@ -25,15 +21,11 @@ app = Flask(__name__)
 
 app.config["SECRET_KEY"] = os.urandom(24)
 load_dotenv()
-secrets = [modal.Secret.from_name("complapisecrets")]
 
-openai_api_key = os.environ("OPENAI_API_KEY")
-supabase_url = os.environ("SUPABASE_URL")
-supabase_key = os.environ("SUPABASE_KEY") 
-modal_key = os.environ("MODAL_API_KEY")
-bucket_name = 'ttsapi'
-
-stub = Stub(modal_key)
+openai_api_key = os.getenv("OPENAI_API_KEY")
+supabase_url = os.getenv("SUPABASE_URL")
+supabase_key = os.getenv("SUPABASE_KEY") 
+modal_key = os.getenv("MODAL_API_KEY")
 
 llm = ChatOpenAI(model="gpt-3.5-turbo")
 
@@ -63,7 +55,8 @@ retriever = vectorstore.as_retriever(search_type="similarity", search_kwargs={"k
 
 # Define prompt template
 template = """Use the following pieces of context to answer the question at the end.
-Use as many of the provided words as possible to make a sentence. The sentence has to be exactly 5 words long. Make sure the sentence is child-safe and appropriate.
+Use as many of the provided words as possible to make a sentence. If the level is A1, the sentence is 5 words long. If the level is A2, the sentence is 6 words long.
+If the level is B1, the sentence is 7 words long. Make sure the sentence is child-safe and appropriate.
 Don't say anything that isn't a direct part of your answer. Take out one word from the sentence. The word must be in the provided list.
 Replace it with ______. Then, separate the next part from the sentence
 with a newline (\n). Take the word you replaced with ______ and add two other words separated by comma. The two other
@@ -86,8 +79,6 @@ rag_chain = (
 
 preload_models()
 
-# Create Supabase client
-supabase: Client = create_client(supabase_url, supabase_key)
 
 @app.route('/api/generate', methods=['GET'])
 def generate():
@@ -101,29 +92,27 @@ def generate():
         while "_" not in resultChain:
             resultChain = rag_chain.invoke(stringConcat)
         logging.info(f"Level: {level} Topic {topic}")
-
-        # Generate audio
-        text_prompt = resultChain.split("\n")[0]
-        history_prompt = "v2/en_speaker_5"
-        audio_array = stub.generate_audio(text_prompt, history_prompt, async = True)
-
-        # Save audio to file
-        audio_file = 'audio.wav'
-        buffer = BytesIO()
-        write(buffer, SAMPLE_RATE, audio_array)
-        with open(audio_file, 'wb') as f:
-            f.write(buffer.getvalue())
-
-        # Upload audio file to Supabase
-        supabase.storage.from_(bucket_name).upload(audio_file, buffer.getvalue(), 'audio/wav')
-        audio_path = supabase.storage.from_(bucket_name).create_signed_url(audio_file, 60)
-        audio_path = supabase.storage.from_(bucket_name).create_signed_url(audio_file, 60 * 60)
-
+        sentence = resultChain.split("\n")[0]
+        sentenceList = sentence.split(" ")
+        if(level == "A1" and len(sentenceList != 5)):
+            resultChain = rag_chain.invoke(stringConcat)
+            sentence = resultChain.split("\n)[0]
+            sentenceList = sentence.split(" ")
+        if(level == "A2" and len(sentenceList != 6)):
+            resultChain = rag_chain.invoke(stringConcat)
+            sentence = resultChain.split("\n)[0]
+            sentenceList = sentence.split(" ")
+        if(level == "B1" and len(sentenceList != 7)):
+            resultChain = rag_chain.invoke(stringConcat)
+            sentence = resultChain.split("\n)[0]
+            sentenceList = sentence.split(" ")
+        optionList = resultChain.split("\n")[1]
         # Return response
         return jsonify({
             'sentence': resultChain.split("\n")[0],
-            'options': resultChain.split("\n")[1].split(","),
-            'audio': audio_path
+            'option1': optionList.split(",")[0],
+            'option2': optionList.split(",")[1],
+            'option3': optionList.split(",")[2],
         })
 
 if __name__ == '__main__':
