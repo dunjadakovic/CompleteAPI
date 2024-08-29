@@ -14,10 +14,9 @@ from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 from dotenv import load_dotenv
-import requests
-import logging
 from supabase import create_client, Client
 from io import BytesIO
+import modal
 from modal import Stub 
 
 app = Flask(__name__)
@@ -28,10 +27,10 @@ app.config["SECRET_KEY"] = os.urandom(24)
 load_dotenv()
 secrets = [modal.Secret.from_name("complapisecrets")]
 
-openai_api_key = os.getenv("OPENAI_API_KEY")
-supabase_url = os.getenv("SUPABASE_URL")
-supabase_key = os.getenv("SUPABASE_KEY") 
-modal_key = os.getenv("MODAL_API_KEY")
+openai_api_key = os.environ("OPENAI_API_KEY")
+supabase_url = os.environ("SUPABASE_URL")
+supabase_key = os.environ("SUPABASE_KEY") 
+modal_key = os.environ("MODAL_API_KEY")
 bucket_name = 'ttsapi'
 
 stub = Stub(modal_key)
