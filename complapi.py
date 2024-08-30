@@ -90,23 +90,24 @@ def generate():
     else:
         stringConcat = level + "," + topic
         resultChain = rag_chain.invoke(stringConcat)
-        while "_" not in resultChain:
-            resultChain = rag_chain.invoke(stringConcat)
         logging.info(f"Level: {level} Topic {topic}")
         sentence = resultChain.split("\n")[0]
         sentenceList = sentence.split(" ")
         if(level == "A1" and not len(sentenceList) == 5):
-            resultChain = rag_chain.invoke(stringConcat)
-            sentence = resultChain.split("\n")[0]
-            sentenceList = sentence.split(" ")
+            while(len(sentenceList) != 5 and "_" not in resultChain"):
+                resultChain = rag_chain.invoke(stringConcat)
+                sentence = resultChain.split("\n")[0]
+                sentenceList = sentence.split(" ")
         if(level == "A2" and not len(sentenceList) == 6):
-            resultChain = rag_chain.invoke(stringConcat)
-            sentence = resultChain.split("\n")[0]
-            sentenceList = sentence.split(" ")
+            while(len(sentenceList) != 6 and "_" not in resultChain"):
+                resultChain = rag_chain.invoke(stringConcat)
+                sentence = resultChain.split("\n")[0]
+                sentenceList = sentence.split(" ")
         if(level == "B1" and not len(sentenceList) == 7):
-            resultChain = rag_chain.invoke(stringConcat)
-            sentence = resultChain.split("\n")[0]
-            sentenceList = sentence.split(" ")
+            while(len(sentenceList) != 7 and "_" not in resultChain"):
+                resultChain = rag_chain.invoke(stringConcat)
+                sentence = resultChain.split("\n")[0]
+                sentenceList = sentence.split(" ")
         optionList = resultChain.split("\n")[1]
         # Return response
         return jsonify({
