@@ -95,15 +95,15 @@ def generate():
         logging.info(f"Level: {level} Topic {topic}")
         sentence = resultChain.split("\n")[0]
         sentenceList = sentence.split(" ")
-        if(level == "A1" and len(sentenceList != 5)):
+        if(level == "A1" and not len(sentenceList) == 5):
             resultChain = rag_chain.invoke(stringConcat)
             sentence = resultChain.split("\n")[0]
             sentenceList = sentence.split(" ")
-        if(level == "A2" and len(sentenceList != 6)):
+        if(level == "A2" and not len(sentenceList) == 6):
             resultChain = rag_chain.invoke(stringConcat)
             sentence = resultChain.split("\n")[0]
             sentenceList = sentence.split(" ")
-        if(level == "B1" and len(sentenceList != 7)):
+        if(level == "B1" and not len(sentenceList) == 7):
             resultChain = rag_chain.invoke(stringConcat)
             sentence = resultChain.split("\n")[0]
             sentenceList = sentence.split(" ")
