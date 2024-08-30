@@ -78,7 +78,6 @@ rag_chain = (
       | StrOutputParser()
     )
 
-preload_models()
 
 
 @app.route('/api/generate', methods=['GET'])
