@@ -94,17 +94,17 @@ def generate():
         sentence = resultChain.split("\n")[0]
         sentenceList = sentence.split(" ")
         if(level == "A1" and not len(sentenceList) == 5):
-            while(len(sentenceList) != 5 and "_" not in resultChain"):
+            while(len(sentenceList) != 5 and "_" not in resultChain):
                 resultChain = rag_chain.invoke(stringConcat)
                 sentence = resultChain.split("\n")[0]
                 sentenceList = sentence.split(" ")
         if(level == "A2" and not len(sentenceList) == 6):
-            while(len(sentenceList) != 6 and "_" not in resultChain"):
+            while(len(sentenceList) != 6 and "_" not in resultChain):
                 resultChain = rag_chain.invoke(stringConcat)
                 sentence = resultChain.split("\n")[0]
                 sentenceList = sentence.split(" ")
         if(level == "B1" and not len(sentenceList) == 7):
-            while(len(sentenceList) != 7 and "_" not in resultChain"):
+            while(len(sentenceList) != 7 and "_" not in resultChain):
                 resultChain = rag_chain.invoke(stringConcat)
                 sentence = resultChain.split("\n")[0]
                 sentenceList = sentence.split(" ")
