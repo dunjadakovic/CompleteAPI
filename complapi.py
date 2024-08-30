@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_file
+nfrom flask import Flask, request, jsonify, send_file
 from bark import SAMPLE_RATE, generate_audio, preload_models
 from scipy.io.wavfile import write as write_wav
 from IPython.display import Audio
@@ -111,7 +111,7 @@ def generate():
         optionList = resultChain.split("\n")[1]
         # Return response
         return jsonify({
-            'sentence': resultChain.split("\n")[0],
+            'sentence': sentenceList.split("\n")[0],
             'option1': optionList.split(",")[0],
             'option2': optionList.split(",")[1],
             'option3': optionList.split(",")[2],
