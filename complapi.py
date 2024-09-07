@@ -111,7 +111,7 @@ def generate():
         optionList = resultChain.split("\n")[1]
         # Return response
         return jsonify({
-            'sentence': sentenceList.split("\n")[0],
+            'sentence1': sentence,
             'option1': optionList.split(",")[0],
             'option2': optionList.split(",")[1],
             'option3': optionList.split(",")[2],
