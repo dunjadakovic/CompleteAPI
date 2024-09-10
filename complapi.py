@@ -1,4 +1,4 @@
-nfrom flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify, send_file
 from bark import SAMPLE_RATE, generate_audio, preload_models
 from scipy.io.wavfile import write as write_wav
 from IPython.display import Audio
