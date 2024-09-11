@@ -94,28 +94,58 @@ def generate():
         sentence = resultChain.split("\n")[0]
         sentenceList = sentence.split(" ")
         if(level == "A1" and not len(sentenceList) == 5):
-            while(len(sentenceList) != 5 and "_" not in resultChain):
+            while(len(sentenceList) != 5 and "_" not in sentence):
                 resultChain = rag_chain.invoke(stringConcat)
                 sentence = resultChain.split("\n")[0]
                 sentenceList = sentence.split(" ")
         if(level == "A2" and not len(sentenceList) == 6):
-            while(len(sentenceList) != 6 and "_" not in resultChain):
+            while(len(sentenceList) != 6 and "_" not in sentence):
                 resultChain = rag_chain.invoke(stringConcat)
                 sentence = resultChain.split("\n")[0]
                 sentenceList = sentence.split(" ")
         if(level == "B1" and not len(sentenceList) == 7):
-            while(len(sentenceList) != 7 and "_" not in resultChain):
+            while(len(sentenceList) != 7 and "_" not in sentence):
                 resultChain = rag_chain.invoke(stringConcat)
                 sentence = resultChain.split("\n")[0]
                 sentenceList = sentence.split(" ")
         optionList = resultChain.split("\n")[1]
         # Return response
-        return jsonify({
-            'sentence1': sentence,
-            'option1': optionList.split(",")[0],
-            'option2': optionList.split(",")[1],
-            'option3': optionList.split(",")[2],
-        })
+        if(level=="A1"):
+            return jsonify({
+                'sentence1': sentenceList[0],
+                'sentence2': sentenceList[1],
+                'sentence3': sentenceList[2],
+                'sentence4': sentenceList[3],
+                'sentence5': sentenceList[4],
+                'option1': optionList.split(",")[0],
+                'option2': optionList.split(",")[1],
+                'option3': optionList.split(",")[2],
+            })
+        if(level=="A2"):
+            return jsonify({
+                'sentence1': sentenceList[0],
+                'sentence2': sentenceList[1],
+                'sentence3': sentenceList[2],
+                'sentence4': sentenceList[3],
+                'sentence5': sentenceList[4],
+                'sentence6': sentenceList[5],
+                'option1': optionList.split(",")[0],
+                'option2': optionList.split(",")[1],
+                'option3': optionList.split(",")[2],
+            })
+        if(level=="B1"):
+            return jsonify({
+                'sentence1': sentenceList[0],
+                'sentence2': sentenceList[1],
+                'sentence3': sentenceList[2],
+                'sentence4': sentenceList[3],
+                'sentence5': sentenceList[4],
+                'sentence6': sentenceList[5],
+                'sentence7': sentenceList[6],
+                'option1': optionList.split(",")[0],
+                'option2': optionList.split(",")[1],
+                'option3': optionList.split(",")[2],
+            })
 
 if __name__ == '__main__':
     app.run(debug=True)
