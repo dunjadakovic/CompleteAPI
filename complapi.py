@@ -92,19 +92,21 @@ def generate():
         resultChain = rag_chain.invoke(stringConcat)
         logging.info(f"Level: {level} Topic {topic}")
         sentence = resultChain.split("\n")[0]
+        optionList = resultChain.split("\n")[0]
+        optionList = optionList.split(",")
         sentenceList = sentence.split(" ")
-        if(level == "A1" and not len(sentenceList) == 5):
-            while(len(sentenceList) != 5 and "_" not in sentence):
+        if(level == "A1" and not len(sentenceList) == 5 and not "_"in sentence and not len(optionList)==3)):
+            while(len(sentenceList) != 5 and "_" not in sentence and not len(optionList) == 3):
                 resultChain = rag_chain.invoke(stringConcat)
                 sentence = resultChain.split("\n")[0]
                 sentenceList = sentence.split(" ")
-        if(level == "A2" and not len(sentenceList) == 6):
-            while(len(sentenceList) != 6 and "_" not in sentence):
+        if(level == "A2" and not len(sentenceList) == 6 and not "_"in sentence and not len(optionList)==3):
+            while(len(sentenceList) != 6 and "_" not in sentence and not len(optionList) == 3):
                 resultChain = rag_chain.invoke(stringConcat)
                 sentence = resultChain.split("\n")[0]
                 sentenceList = sentence.split(" ")
-        if(level == "B1" and not len(sentenceList) == 7):
-            while(len(sentenceList) != 7 and "_" not in sentence):
+        if(level == "B1" and not len(sentenceList) == 7 and not "_"in sentence and not len(optionList)==3)):
+            while(len(sentenceList) != 7 and "_" not in sentence and not len(optionList) == 3):
                 resultChain = rag_chain.invoke(stringConcat)
                 sentence = resultChain.split("\n")[0]
                 sentenceList = sentence.split(" ")
