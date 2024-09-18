@@ -106,6 +106,7 @@ def generate():
         response.update({
             f"option{i+1}": optionList[i] for i in range(len(optionList))
         })
+        return jsonify(response)
 
 if __name__ == '__main__':
     app.run(debug=True)
