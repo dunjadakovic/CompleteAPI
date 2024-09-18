@@ -92,21 +92,21 @@ def generate():
         optionList = optionList.split(",")
         sentenceList = sentence.split(" ")
         if(level == "A1" and not len(sentenceList) == 5 and not "_"in sentence and not len(optionList)==3):
-            while(len(sentenceList) != 5 and "_" not in sentence and not len(optionList) == 3):
+            while(len(sentenceList) != 5 or "_" not in sentence or not len(optionList) == 3):
                 resultChain = rag_chain.invoke(stringConcat)
                 sentence = resultChain.split("\n")[0]
                 sentenceList = sentence.split(" ")
                 options = resultChain.split("\n")[1]
                 optionList = options.split(",")
         if(level == "A2" and not len(sentenceList) == 6 and not "_"in sentence and not len(optionList)==3):
-            while(len(sentenceList) != 6 and "_" not in sentence and not len(optionList) == 3):
+            while(len(sentenceList) != 6 or "_" not in sentence or not len(optionList) == 3):
                 resultChain = rag_chain.invoke(stringConcat)
                 sentence = resultChain.split("\n")[0]
                 sentenceList = sentence.split(" ")
                 options = resultChain.split("\n")[1]
                 optionList = options.split(",")
         if(level == "B1" and not len(sentenceList) == 7 and not "_"in sentence and not len(optionList)==3):
-            while(len(sentenceList) != 7 and "_" not in sentence and not len(optionList) == 3):
+            while(len(sentenceList) != 7 or "_" not in sentence or not len(optionList) == 3):
                 resultChain = rag_chain.invoke(stringConcat)
                 sentence = resultChain.split("\n")[0]
                 sentenceList = sentence.split(" ")
@@ -145,9 +145,9 @@ def generate():
                 'sentence5': sentenceList[4],
                 'sentence6': sentenceList[5],
                 'sentence7': sentenceList[6],
-                'option1': optionList.split(",")[0],
-                'option2': optionList.split(",")[1],
-                'option3': optionList.split(",")[2],
+                'option1': optionList[0],
+                'option2': optionList[1],
+                'option3': optionList[2],
             })
 
 if __name__ == '__main__':
