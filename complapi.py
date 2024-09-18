@@ -54,7 +54,7 @@ retriever = vectorstore.as_retriever(search_type="similarity", search_kwargs={"k
 # Define prompt template
 template = """Use the following pieces of content to create a fill in the gaps exercise. I want you to make a sentence, create a gap, add a newline and then 
 add three options for filling in the gap. Provide only that. Make sure the gap is shown like this "_". The sentence should make sense.
-OVERALL; THE FORMAT IS: SENTENCE \n OPTION1, OPTION2, OPTION3. KEEP THAT FORMAT.  
+OVERALL; THE FORMAT IS: SENTENCE \n OPTION1, OPTION2, OPTION3. KEEP THAT FORMAT. !!!!MAKE SURE THERE ARE THREE OPTIONS!!!   
 {context}
 
 Question: {question}
