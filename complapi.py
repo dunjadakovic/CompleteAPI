@@ -83,7 +83,7 @@ def generate():
         resultChain = rag_chain.invoke(stringConcat)
         logging.info(f"Level: {level} Topic {topic}")
         sentence = resultChain.split("\n")[0]
-        options = resultChain.split("\n")[0]
+        options = resultChain.split("\n")[1]
         optionList = options.split(",")
         sentenceList = sentence.split(" ")
         # Return response
