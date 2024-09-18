@@ -60,7 +60,7 @@ Replace it with ______. Then, separate the next part from the sentence
 with a newline (\n). Take the word you replaced with ______ and add two other words separated by comma. The two other
 words have to be in a similar semantic/syntactic category as the replaced word but must show some small differences.
 Provide the sentence, then a newline (\n) and then the three words as described. Do not provide anything else.
-MAKE SURE THAT THE SENTENCE IN ITSELF MAKES SENSE AND THAT ONLY ONE OF THE OPTIONS FITS THE ____ GAP SO IT'S LIKE A FILL IN THE GAPS EXERCISE!
+MAKE SURE THAT THE SENTENCE IN ITSELF MAKES SENSE AND THAT ONLY ONE OF THE OPTIONS FITS THE ____ GAP SO IT'S LIKE A FILL IN THE GAPS EXERCISE! IT IS ABSOLUTELY IMPERATIVE THAT YOUR ANSWER CONTAIN "_"
 {context}
 
 Question: {question}
