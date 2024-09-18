@@ -85,10 +85,9 @@ def generate():
         sentence = resultChain.split("\n")[0]
         options = resultChain.split("\n")[1]
         optionList = options.split(",")
-        sentenceList = sentence.split(" ")
         # Return response
         response = {
-        f"sentence{i+1}": sentenceList[i] for i in range(len(sentenceList))
+        "sentence": sentence
         }
         response.update({
             f"option{i+1}": optionList[i] for i in range(len(optionList))
