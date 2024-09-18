@@ -52,15 +52,8 @@ vectorstore = Chroma.from_documents(documents=texts, embedding=OpenAIEmbeddings(
 retriever = vectorstore.as_retriever(search_type="similarity", search_kwargs={"k": 1})
 
 # Define prompt template
-template = """Use the following pieces of context to answer the question at the end.
-Use as many of the provided words as possible to make a sentence. If the level is A1, the sentence is 5 words long. If the level is A2, the sentence is 6 words long.
-If the level is B1, the sentence is 7 words long.
-Don't say anything that isn't a direct part of your answer. Take out one word from the sentence. The word must be in the provided list.
-Replace it with ______. Then, separate the next part from the sentence
-with a newline (\n). Take the word you replaced with ______ and add two other similar words separated by comma..
-Provide the sentence, then a newline (\n) and then the three words as described. Do not provide anything else.
-MAKE SURE THAT THE SENTENCE IN ITSELF MAKES SENSE AND THAT ONLY ONE OF THE OPTIONS FITS THE ____ GAP SO IT'S LIKE A FILL IN THE GAPS EXERCISE! IT IS ABSOLUTELY IMPERATIVE THAT YOUR ANSWER CONTAIN "_". 
-MAKE SURE YOUR ANSWER IS STRUCTURED LIKE SENTENCE, \n, THREE WORDS SEPARATED BY COMMA
+template = """Use the following pieces of content to create a fill in the gaps exercise. I want you to make a sentence, create a gap, add a newline and then 
+add three options for filling in the gap. Provide only that. Make sure the gap is shown like this "_". The sentence should make sense. 
 {context}
 
 Question: {question}
@@ -89,16 +82,9 @@ def generate():
         resultChain = rag_chain.invoke(stringConcat)
         logging.info(f"Level: {level} Topic {topic}")
         sentence = resultChain.split("\n")[0]
-        optionList = resultChain.split("\n")[0]
+        options = resultChain.split("\n")[0]
         optionList = optionList.split(",")
         sentenceList = sentence.split(" ")
-        if(not "_"in sentence):
-            while(len(sentenceList) != 5 or "_" not in sentence or not len(optionList) == 3):
-                resultChain = rag_chain.invoke(stringConcat)
-                sentence = resultChain.split("\n")[0]
-                sentenceList = sentence.split(" ")
-                options = resultChain.split("\n")[1]
-                optionList = options.split(",")
         # Return response
         response = {
         f"sentence{i+1}": sentenceList[i] for i in range(len(sentenceList))
