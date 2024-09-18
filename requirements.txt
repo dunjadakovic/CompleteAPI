@@ -8,8 +8,5 @@ gunicorn
 flask
 Flask-Caching
 redis
-git+https://github.com/dunjadakovic/Bark2.git
-supabase
 pycryptodome
 ipython
-modal
