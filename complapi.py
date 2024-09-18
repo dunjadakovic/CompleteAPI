@@ -120,9 +120,9 @@ def generate():
                 'sentence3': sentenceList[2],
                 'sentence4': sentenceList[3],
                 'sentence5': sentenceList[4],
-                'option1': optionList.split(",")[0],
-                'option2': optionList.split(",")[1],
-                'option3': optionList.split(",")[2],
+                'option1': optionList[0],
+                'option2': optionList[1],
+                'option3': optionList[2],
             })
         if(level=="A2"):
             return jsonify({
@@ -132,9 +132,9 @@ def generate():
                 'sentence4': sentenceList[3],
                 'sentence5': sentenceList[4],
                 'sentence6': sentenceList[5],
-                'option1': optionList.split(",")[0],
-                'option2': optionList.split(",")[1],
-                'option3': optionList.split(",")[2],
+                'option1': optionList[0],
+                'option2': optionList[1],
+                'option3': optionList[2],
             })
         if(level=="B1"):
             return jsonify({
