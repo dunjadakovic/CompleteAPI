@@ -96,22 +96,22 @@ def generate():
                 resultChain = rag_chain.invoke(stringConcat)
                 sentence = resultChain.split("\n")[0]
                 sentenceList = sentence.split(" ")
-                optionsA1 = resultChain.split("\n")[1]
-                optionListA1 = optionsA1.split(",")
+                options = resultChain.split("\n")[1]
+                optionList = options.split(",")
         if(level == "A2" and not len(sentenceList) == 6 and not "_"in sentence and not len(optionList)==3):
             while(len(sentenceList) != 6 and "_" not in sentence and not len(optionList) == 3):
                 resultChain = rag_chain.invoke(stringConcat)
                 sentence = resultChain.split("\n")[0]
                 sentenceList = sentence.split(" ")
-                optionsA2 = resultChain.split("\n")[1]
-                optionListA2 = optionsA2.split(",")
+                options = resultChain.split("\n")[1]
+                optionList = options.split(",")
         if(level == "B1" and not len(sentenceList) == 7 and not "_"in sentence and not len(optionList)==3):
             while(len(sentenceList) != 7 and "_" not in sentence and not len(optionList) == 3):
                 resultChain = rag_chain.invoke(stringConcat)
                 sentence = resultChain.split("\n")[0]
                 sentenceList = sentence.split(" ")
-                optionsB1 = resultChain.split("\n")[1]
-                optionListB1 = optionsB1.split(",")
+                options = resultChain.split("\n")[1]
+                optionList = options.split(",")
         # Return response
         if(level=="A1"):
             return jsonify({
