@@ -83,7 +83,7 @@ def generate():
         logging.info(f"Level: {level} Topic {topic}")
         sentence = resultChain.split("\n")[0]
         options = resultChain.split("\n")[0]
-        optionList = optionList.split(",")
+        optionList = options.split(",")
         sentenceList = sentence.split(" ")
         # Return response
         response = {
