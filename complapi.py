@@ -92,21 +92,21 @@ def generate():
         optionList = resultChain.split("\n")[0]
         optionList = optionList.split(",")
         sentenceList = sentence.split(" ")
-        if(level == "A1" and not len(sentenceList) == 5 and not "_"in sentence and not len(optionList)==3):
+        if(level == "A1" or not len(sentenceList) == 5 or not "_"in sentence or not len(optionList)==3):
             while(len(sentenceList) != 5 or "_" not in sentence or not len(optionList) == 3):
                 resultChain = rag_chain.invoke(stringConcat)
                 sentence = resultChain.split("\n")[0]
                 sentenceList = sentence.split(" ")
                 options = resultChain.split("\n")[1]
                 optionList = options.split(",")
-        if(level == "A2" and not len(sentenceList) == 6 and not "_"in sentence and not len(optionList)==3):
+        if(level == "A2" or not len(sentenceList) == 6 or not "_"in sentence or not len(optionList)==3):
             while(len(sentenceList) != 6 or "_" not in sentence or not len(optionList) == 3):
                 resultChain = rag_chain.invoke(stringConcat)
                 sentence = resultChain.split("\n")[0]
                 sentenceList = sentence.split(" ")
                 options = resultChain.split("\n")[1]
                 optionList = options.split(",")
-        if(level == "B1" and not len(sentenceList) == 7 and not "_"in sentence and not len(optionList)==3):
+        if(level == "B1" or not len(sentenceList) == 7 and not "_"in sentence or not len(optionList)==3):
             while(len(sentenceList) != 7 or "_" not in sentence or not len(optionList) == 3):
                 resultChain = rag_chain.invoke(stringConcat)
                 sentence = resultChain.split("\n")[0]
