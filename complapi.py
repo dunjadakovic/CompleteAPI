@@ -54,13 +54,13 @@ retriever = vectorstore.as_retriever(search_type="similarity", search_kwargs={"k
 # Define prompt template
 template = """Use the following pieces of context to answer the question at the end.
 Use as many of the provided words as possible to make a sentence. If the level is A1, the sentence is 5 words long. If the level is A2, the sentence is 6 words long.
-If the level is B1, the sentence is 7 words long. Make sure the sentence is child-safe and appropriate.
+If the level is B1, the sentence is 7 words long.
 Don't say anything that isn't a direct part of your answer. Take out one word from the sentence. The word must be in the provided list.
 Replace it with ______. Then, separate the next part from the sentence
-with a newline (\n). Take the word you replaced with ______ and add two other words separated by comma. The two other
-words have to be in a similar semantic/syntactic category as the replaced word but must show some small differences.
+with a newline (\n). Take the word you replaced with ______ and add two other similar words separated by comma..
 Provide the sentence, then a newline (\n) and then the three words as described. Do not provide anything else.
-MAKE SURE THAT THE SENTENCE IN ITSELF MAKES SENSE AND THAT ONLY ONE OF THE OPTIONS FITS THE ____ GAP SO IT'S LIKE A FILL IN THE GAPS EXERCISE! IT IS ABSOLUTELY IMPERATIVE THAT YOUR ANSWER CONTAIN "_"
+MAKE SURE THAT THE SENTENCE IN ITSELF MAKES SENSE AND THAT ONLY ONE OF THE OPTIONS FITS THE ____ GAP SO IT'S LIKE A FILL IN THE GAPS EXERCISE! IT IS ABSOLUTELY IMPERATIVE THAT YOUR ANSWER CONTAIN "_". 
+MAKE SURE YOUR ANSWER IS STRUCTURED LIKE SENTENCE, \n, THREE WORDS SEPARATED BY COMMA
 {context}
 
 Question: {question}
