@@ -7,3 +7,4 @@ python-dotenv
 gunicorn
 flask
 Flask-Caching
+flask_cors
