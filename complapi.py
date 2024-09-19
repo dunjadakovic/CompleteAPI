@@ -12,8 +12,10 @@ from langchain_core.runnables import RunnablePassthrough
 from dotenv import load_dotenv
 import requests
 import logging
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 # Set API key for OpenAI usage
 
