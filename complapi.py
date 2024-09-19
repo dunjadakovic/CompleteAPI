@@ -58,6 +58,7 @@ template = """Use the following pieces of content to create a fill in the gaps e
 add three options for filling in the gap. Provide only that. Make sure the gap is shown like this "_". The sentence should make sense.
 OVERALL; THE FORMAT IS: SENTENCE \n OPTION1, OPTION2, OPTION3. KEEP THAT FORMAT. !!!!MAKE SURE THERE ARE THREE OPTIONS!!! 
 The options have to be similar but there should only be one option that fits the gap properly. It is absolutely imperative that you provide exactly 3 options. Exactly 3!!!
+Before you send me your answer, double check it to see if there is three options in the correct format. 
 {context}
 
 Question: {question}
