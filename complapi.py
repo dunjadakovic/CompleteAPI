@@ -91,6 +91,7 @@ def generate():
         # Return response
         response = {
         "sentence": sentence
+        "optionlist" : optionList
         }
         response.update({
             f"option{i+1}": optionList[i] for i in range(len(optionList))
