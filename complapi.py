@@ -55,7 +55,8 @@ retriever = vectorstore.as_retriever(search_type="similarity", search_kwargs={"k
 
 # Define prompt template
 template = """Use the following pieces of content to create a fill in the gaps exercise. I want you to make a sentence, create a gap, add a newline and then 
-add as many options as possible (max 10) in the gap. Provide only that. Make sure the gap is shown like this "_". The sentence should make sense.
+add as many options as possible (max 10) in the gap. Provide only that. Make sure the gap is shown like this "_". The sentence should make sense and be very conceptually 
+and grammatically simple.
 OVERALL; THE FORMAT IS: SENTENCE \n OPTION1, OPTION2, OPTION3 etc. I want you to provide 5 - 10 options where only one makes sense to fill the gap. 
 It is absolutely imperative that you adhere to the format and create lots of options!! Always make sure that only one option actually fits the sentence by trying to
 fit all the options you provided in and then making sure that only one actually makes sense!!!!! 
