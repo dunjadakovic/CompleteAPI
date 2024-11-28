@@ -57,7 +57,9 @@ retriever = vectorstore.as_retriever(search_type="similarity", search_kwargs={"k
 template = """Use the following pieces of content to create a fill in the gaps exercise. I want you to make a sentence, create a gap, add a newline and then 
 add as many options as possible (max 10) in the gap. Provide only that. Make sure the gap is shown like this "_". The sentence should make sense.
 OVERALL; THE FORMAT IS: SENTENCE \n OPTION1, OPTION2, OPTION3 etc. I want you to provide 5 - 10 options where only one makes sense to fill the gap. 
-It is absolutely imperative that you adhere to the format and create lots of options!!
+It is absolutely imperative that you adhere to the format and create lots of options!! Always make sure that only one option actually fits the sentence by trying to
+fit all the options you provided in and then making sure that only one actually makes sense!!!!! Return that parameter as a part in the format that looks like this:
+SENTENCE \n OPTION1, OPTION2, OPTION3, ... \n WHETHER IT IS TRUE OR FALSE THAT ONLY ONE MAKES SENSE 
 {context}
 
 Question: {question}
@@ -87,14 +89,20 @@ def generate():
         logging.info(f"Level: {level} Topic {topic}")
         sentence = resultChain.split("\n")[0]
         options = resultChain.split("\n")[1]
+        uniqueness = resultChain.split("\n")[2]
         optionList = options.split(",")
         # Return response
         response = {
         "sentence": sentence
-        "optionlist" : optionList
         }
         response.update({
             f"option{i+1}": optionList[i] for i in range(len(optionList))
+        })
+        response.update({
+            "optionList": optionList
+        })
+        response.update({
+            "uniqueness": uniqueness
         })
         return jsonify(response)
 
