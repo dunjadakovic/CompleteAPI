@@ -58,8 +58,8 @@ template = """Use the following pieces of content to create a fill in the gaps e
 add as many options as possible (max 10) in the gap. Provide only that. Make sure the gap is shown like this "_". The sentence should make sense.
 OVERALL; THE FORMAT IS: SENTENCE \n OPTION1, OPTION2, OPTION3 etc. I want you to provide 5 - 10 options where only one makes sense to fill the gap. 
 It is absolutely imperative that you adhere to the format and create lots of options!! Always make sure that only one option actually fits the sentence by trying to
-fit all the options you provided in and then making sure that only one actually makes sense!!!!! Return that parameter as a part in the format that looks like this:
-SENTENCE \n OPTION1, OPTION2, OPTION3, ... \n WHETHER IT IS TRUE OR FALSE THAT ONLY ONE MAKES SENSE 
+fit all the options you provided in and then making sure that only one actually makes sense!!!!! 
+ALWAYS ALWAYS ALWAYS ADHERE TO THE GIVEN FORMAT; IT IS INCREDIBLY IMPORTANT THAT YOU FOLLOW ALL THE INSTRUCTIONS I GAVE YOU!!!!
 {context}
 
 Question: {question}
@@ -89,7 +89,6 @@ def generate():
         logging.info(f"Level: {level} Topic {topic}")
         sentence = resultChain.split("\n")[0]
         options = resultChain.split("\n")[1]
-        uniqueness = resultChain.split("\n")[2]
         optionList = options.split(",")
         # Return response
         response = {
@@ -100,9 +99,6 @@ def generate():
         })
         response.update({
             "optionList": optionList
-        })
-        response.update({
-            "uniqueness": uniqueness
         })
         return jsonify(response)
 
