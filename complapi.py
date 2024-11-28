@@ -89,7 +89,7 @@ def generate():
         resultChain = rag_chain.invoke(stringConcat)
         logging.info(f"Level: {level} Topic {topic}")
         options = None
-        while options is not None:
+        while options is None:
             try:
                 sentence = resultChain.split("\n")[0]
                 options = resultChain.split("\n")[1]
