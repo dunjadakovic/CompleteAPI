@@ -54,8 +54,8 @@ vectorstore = Chroma.from_documents(documents=texts, embedding=OpenAIEmbeddings(
 retriever = vectorstore.as_retriever(search_type="similarity", search_kwargs={"k": 1})
 
 # Define prompt template
-template = """Use this topic {context} to create a fill in the gaps exercise with at least 5 options. It should be formatted like sentencestart_____sentenceend \n option1, option2, option3. Make sure to always provide a sentence that makes sense and at least 5 options in the given format.
-ADHERE TO THE FORMAT AND GIVE LOTS OF OPTIONS!!!!
+template = """Use this topic {context} to create a fill in the gaps exercise with at least 5 options. It should be formatted like sentence(with gap) \n option1, option2, option3. Make sure to always provide a sentence that makes sense and at least 5 options in the given format.
+ADHERE TO THE FORMAT AND GIVE LOTS OF OPTIONS!!!! Give at least 5 options.Only one of the many options should make sense with the sentence. Adhere to the format.
 
 Question: {question}
 
