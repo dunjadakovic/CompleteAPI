@@ -55,7 +55,7 @@ retriever = vectorstore.as_retriever(search_type="similarity", search_kwargs={"k
 
 # Define prompt template
 template = """Use this topic {context} to create a fill in the gaps exercise with at least 5 options. It should be formatted like sentence(with gap) \n option1, option2, option3. Make sure to always provide a sentence that makes sense and at least 5 options in the given format.
-ADHERE TO THE FORMAT AND GIVE LOTS OF OPTIONS!!!! Give at least 5 options.Only one of the many options should make sense with the sentence. Adhere to the format. it has to be sentence \n option1, option2, option3, option4, option5 with as many options as possible. adhere to the format under any circumstance
+ADHERE TO THE FORMAT AND GIVE LOTS OF OPTIONS!!!! Give at least 5 options.Only one of the many options should make sense with the sentence. Adhere to the format. it has to be sentence \n option1, option2, option3, option4, option5 with as many options as possible. adhere to the format under any circumstance and make sure that there is enough options. double check that it is a fill in the gaps exercise that makes sense exactly as I said and is in the format I said.
 
 
 Question: {question}
