@@ -67,8 +67,8 @@ The cat ___ on the mat. \n sat, runs, sings, smiles, laughs
 
 
 Question: {question}
-"""
-Helpful Answer:
+
+Helpful Answer:"""
 custom_rag_prompt = PromptTemplate.from_template(template)
 def format_docs(docs):
     return "\n\n".join(doc.page_content for doc in docs)
