@@ -56,10 +56,10 @@ retriever = vectorstore.as_retriever(search_type="similarity", search_kwargs={"k
 # Define prompt template
 template = """Generate a fill-in-the-gaps exercise with the following format based on the following topic {context}:
 Provide a meaningful and grammatically correct sentence with a gap (eg "The cat ___ on the mat")
-Below the sentence provide four options for the missing word. Ensure one option is correct and the other three are plausible but incorrect.
+Below the sentence provide four options for the missing word. Ensure one option is correct and the others are not from the current topic but on a similar language level.
 Rules for the exercise:
 1. The sentence must be coherent and contextually meaningful.
-2. The options should be related to the sentence, ensuring the distractors (wrong options) are fairly obviously incorrect and clearly distinguishable from the correct answer.
+2. The options should be related to the sentence, ensuring the distractors (wrong options) are fairly obviously incorrect, clearly distinguishable from the wrong answer and not from the current topic.
 Output format: YOU MUST ADHERE TO THIS AT ALL COST OR NOTHING WILL WORK
 Sentence \n option1, option2, option3, option4, option5
 For example:
