@@ -60,6 +60,7 @@ Below the sentence provide four options for the missing word. Ensure one option 
 Rules for the exercise:
 1. The sentence must be coherent and contextually meaningful.
 2. The options should be related to the sentence, ensuring the distractors (wrong options) are fairly obviously incorrect, clearly distinguishable from the wrong answer and not from the current topic.
+3. The correct option must make sense in the context of the sentence.
 Output format: YOU MUST ADHERE TO THIS AT ALL COST OR NOTHING WILL WORK
 Sentence \n option1, option2, option3, option4, option5
 For example:
