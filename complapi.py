@@ -63,12 +63,12 @@ Rules for the exercise:
 Output format: YOU MUST ADHERE TO THIS AT ALL COST OR NOTHING WILL WORK
 Sentence \n option1, option2, option3, option4, option5
 For example:
-The cat ___ on the mat. \n sat, runs, sings, smiles, laughs"""
+The cat ___ on the mat. \n sat, runs, sings, smiles, laughs
 
 
 Question: {question}
 
-Helpful Answer:"""
+Helpful Answer:
 custom_rag_prompt = PromptTemplate.from_template(template)
 def format_docs(docs):
     return "\n\n".join(doc.page_content for doc in docs)
@@ -78,7 +78,7 @@ rag_chain = (
       | llm
       | StrOutputParser()
     )
-
+"""
 
 
 @app.route('/api/generate', methods=['GET'])
