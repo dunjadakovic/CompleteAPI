@@ -27,7 +27,7 @@ supabase_url = os.getenv("SUPABASE_URL")
 supabase_key = os.getenv("SUPABASE_KEY") 
 modal_key = os.getenv("MODAL_API_KEY")
 
-llm = ChatOpenAI(model="gpt-3.5-turbo")
+llm = ChatOpenAI(model="gpt-4o-mini")
 
 # Load CSV file
 file_url = "https://raw.githubusercontent.com/dunjadakovic/RAGAPI/main/ContentAndCategories.csv"
@@ -54,8 +54,16 @@ vectorstore = Chroma.from_documents(documents=texts, embedding=OpenAIEmbeddings(
 retriever = vectorstore.as_retriever(search_type="similarity", search_kwargs={"k": 1})
 
 # Define prompt template
-template = """Use this topic {context} to create a fill in the gaps exercise with at least 5 options. It should be formatted like sentence(with gap) \n option1, option2, option3. Make sure to always provide a sentence that makes sense and at least 5 options in the given format.
-ADHERE TO THE FORMAT AND GIVE LOTS OF OPTIONS!!!! Give at least 5 options.Only one of the many options should make sense with the sentence. Adhere to the format. it has to be sentence \n option1, option2, option3, option4, option5 with as many options as possible. adhere to the format under any circumstance and make sure that there is enough options. double check that it is a fill in the gaps exercise that makes sense exactly as I said and is in the format I said.
+template = """Generate a fill-in-the-gaps exercise with the following format based on the following topic {context}:
+Provide a meaningful and grammatically correct sentence with a gap (eg "The cat ___ on the mat")
+Below the sentence provide four options for the missing word. Ensure one option is correct and the other three are plausible but incorrect.
+Rules for the exercise:
+1. The sentence must be coherent and contextually meaningful.
+2. The options should be related to the sentence, ensuring the distractors (wrong options) are not obviously incorrect but clearly distinguishable from the correct answer.
+Output format: YOU MUST ADHERE TO THIS AT ALL COST OR NOTHING WILL WORK
+Sentence \n option1, option2, option3, option4, option5
+For example:
+The cat ___ on the mat. \n sat, runs, sings, smiles, laughs"""
 
 
 Question: {question}
