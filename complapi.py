@@ -59,7 +59,7 @@ Provide a meaningful and grammatically correct sentence with a gap (eg "The cat 
 Below the sentence provide four options for the missing word. Ensure one option is correct and the other three are plausible but incorrect.
 Rules for the exercise:
 1. The sentence must be coherent and contextually meaningful.
-2. The options should be related to the sentence, ensuring the distractors (wrong options) are not obviously incorrect but clearly distinguishable from the correct answer.
+2. The options should be related to the sentence, ensuring the distractors (wrong options) are fairly obviously incorrect and clearly distinguishable from the correct answer.
 Output format: YOU MUST ADHERE TO THIS AT ALL COST OR NOTHING WILL WORK
 Sentence \n option1, option2, option3, option4, option5
 For example:
