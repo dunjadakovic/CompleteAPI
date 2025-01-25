@@ -67,7 +67,7 @@ The cat ___ on the mat. \n sat, runs, sings, smiles, laughs
 
 
 Question: {question}
-
+"""
 Helpful Answer:
 custom_rag_prompt = PromptTemplate.from_template(template)
 def format_docs(docs):
@@ -78,7 +78,6 @@ rag_chain = (
       | llm
       | StrOutputParser()
     )
-"""
 
 
 @app.route('/api/generate', methods=['GET'])
